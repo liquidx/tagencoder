@@ -1,0 +1,36 @@
+{
+    IBClasses = (
+        {CLASS = ATDragDropTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {
+            ACTIONS = {close = id; open = id; }; 
+            CLASS = ATEncodingPrefsController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                availableTableView = NSTableView; 
+                enabledTableView = NSTableView; 
+                prefPanel = NSPanel; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = ATImageAndTextCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
+        {
+            CLASS = ATMainController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {prefsControl = id; tableControl = id; tableView = id; window = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = ATSongTableController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                mainController = ATMainController; 
+                tableView = NSTableView; 
+                window = NSWindow; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = ATSongTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,55 @@
+Short Tutorial on how to build a Python MacOSX App
+==================================================
+
+Introduction
+
+Generally, this is a short tutorial on how to setup a simple development environment to write a Python App. 
+
+
+Interface Building
+------------------
+
+You'll need to use Interface Building which is bunlded along with the Apple Devleopment Tools which comes with every distribution of MacOSX. 
+
+Create a new interface and then save it in your project directory under:
+
+<project_name>/English.lproj/MainMenu.nib
+
+
+A Simple Python Executable
+--------------------------
+
+Now, just create a python script with the following in your <project_name> directory:
+
+<project_name>/<project_name>.py
+
+from PyObjCTools import NibClassBuilder, AppHelper
+
+NibClassBuilder.extractClasses("MainMenu")
+
+if __name__ == "__main__":
+	AppHelper.runEventLoop()
+
+
+Python buildapp.py script
+-------------------------
+
+Now to create a very simple build script to build your application:
+
+from bundlebuilder import buildapp
+
+buildapp(
+    name = "<project_name>",
+    mainprogram = "<project_name>.py",
+    resources = ["Resources/English.lproj"],
+    nibname = "MainMenu",
+)
+
+
+Building
+--------
+Run in the directory:
+
+python buildapp.py --link build
+
+
