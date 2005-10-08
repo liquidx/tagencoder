@@ -27,6 +27,8 @@ class ATEncodingPrefsController(NibClassBuilder.AutoBaseClass):
         if not self.enabledEncodings:
             defaults.setObject_forKey_(DEFAULT_ENCODINGS, 'enabledEncodings')
             self.enabledEncodings = DEFAULT_ENCODINGS
+            
+        self.enabledEncodings = [x for x in self.enabledEncodings];
         defaults.synchronize()
             
         # load all encoding choices
@@ -122,7 +124,7 @@ class ATEncodingPrefsController(NibClassBuilder.AutoBaseClass):
                     i = self.enabledEncodings.index(enc)
                     del self.enabledEncodings[i]
                     
-            elif (tv == info.draggingSource()) and \
+            elif (self.enabledTableView == info.draggingSource()) and \
                 (tv == self.enabledTableView):
                 
                 encodings = pboard.propertyListForType_(ATEncodingPboardType)
@@ -134,6 +136,7 @@ class ATEncodingPrefsController(NibClassBuilder.AutoBaseClass):
                         newIndex = row + moved - 1
                     else:
                         newIndex = row + moved
+                    print newIndex
                     self.enabledEncodings.insert(newIndex, enc)
                     moved += 1
             else:
