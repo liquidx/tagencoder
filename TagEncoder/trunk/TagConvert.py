@@ -8,7 +8,8 @@ import os
 def strip_mod(list):
     return map(lambda x: x.split(".")[-1], list)
 
-DEBUG_ENC = ['gb2312', 'big5_hkscs2001', 'utf_8', 'iso8859-1']
+DEBUG_ENC = ['gb2312', 'big5hkscs', 'utf8', 'iso8859-1']
+OLD_NEW_ENC_MAP = {'big5_hkscs2001':'big5hkscs'}
 FALLBACK_ENC = 'iso8859-1'
 
 # class to deal with MP3 files' tag encodings

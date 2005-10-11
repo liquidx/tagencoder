@@ -3,10 +3,39 @@ from Foundation import *
 from AppKit import *
 
 import cjkcodecs.aliases
-from cjkcodecs import *
+import cjkcodecs.big5
+import cjkcodecs.big5hkscs
+import cjkcodecs.cp932
+import cjkcodecs.cp949
+import cjkcodecs.cp950
+import cjkcodecs.euc_jis_2004
+import cjkcodecs.euc_jisx0213
+import cjkcodecs.euc_jp
+import cjkcodecs.euc_kr
+import cjkcodecs.euc_tw
+import cjkcodecs.gb18030
+import cjkcodecs.gb2312
+import cjkcodecs.gbk
+import cjkcodecs.hz
+import cjkcodecs.iso2022_cn
+import cjkcodecs.iso2022_jp
+import cjkcodecs.iso2022_jp_1
+import cjkcodecs.iso2022_jp_2
+import cjkcodecs.iso2022_jp_2004
+import cjkcodecs.iso2022_jp_3
+import cjkcodecs.iso2022_jp_ext
+import cjkcodecs.iso2022_kr
+import cjkcodecs.johab
+import cjkcodecs.shift_jis
+import cjkcodecs.shift_jis_2004
+import cjkcodecs.shift_jisx0213
+import cjkcodecs._multibytecodec
 from encodings import aliases
 
-DEFAULT_ENCODINGS = ['big5_hkscs', 'gb2312', 'utf8', 'us_ascii']
+DEFAULT_ENC = ['gb2312', 'big5hkscs', 'utf8', 'iso8859-1']
+OLD_NEW_ENC_MAP = {'big5_hkscs2001':'big5hkscs'}
+FALLBACK_ENC = 'iso8859-1'
+
 ATEncodingPboardType = 'ATEncodingPboardType'
 
 class ATEncodingPrefsController(NibClassBuilder.AutoBaseClass):
@@ -25,20 +54,27 @@ class ATEncodingPrefsController(NibClassBuilder.AutoBaseClass):
         defaults = NSUserDefaults.standardUserDefaults()
         self.enabledEncodings = defaults.stringArrayForKey_('enabledEncodings')
         if not self.enabledEncodings:
-            defaults.setObject_forKey_(DEFAULT_ENCODINGS, 'enabledEncodings')
-            self.enabledEncodings = DEFAULT_ENCODINGS
-            
+            defaults.setObject_forKey_(DEFAULT_ENC, 'enabledEncodings')
+            self.enabledEncodings = DEFAULT_ENC
+
         self.enabledEncodings = [x for x in self.enabledEncodings];
+        for i in range(len(self.enabledEncodings)):
+            if OLD_NEW_ENC_MAP.has_key(self.enabledEncodings[i]):
+               newenc = OLD_NEW_ENC_MAP[self.enabledEncodings[i]]
+               self.enabledEncodings[i] = newenc
+
         defaults.synchronize()
             
         # load all encoding choices
         all_aliases = aliases.aliases.keys()
         all_aliases.sort()
+        
         for enc in self.enabledEncodings:
             try:
                 all_aliases.remove(enc)
             except ValueError:
                 print "%s not in all_aliases" % enc
+        
         self.availableEncodings = all_aliases
         
         self.availableTableView.setDataSource_(self)
