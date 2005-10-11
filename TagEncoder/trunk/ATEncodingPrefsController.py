@@ -6,7 +6,7 @@ import cjkcodecs.aliases
 from cjkcodecs import *
 from encodings import aliases
 
-DEFAULT_ENCODINGS = ['big5_hkscs2001', 'gb2312', 'utf8', 'us_ascii']
+DEFAULT_ENCODINGS = ['big5_hkscs', 'gb2312', 'utf8', 'us_ascii']
 ATEncodingPboardType = 'ATEncodingPboardType'
 
 class ATEncodingPrefsController(NibClassBuilder.AutoBaseClass):

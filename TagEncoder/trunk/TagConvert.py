@@ -166,7 +166,10 @@ class EncodedID3:
 
         for enc in encodings:
             try:
-                result = value.decode(enc)
+                try:
+                    result = value.decode(enc)
+                except AttributeError:
+                    result = value.encode('iso8859').decode(enc)
                 enc_used = enc
                 break
             except UnicodeDecodeError, e:
