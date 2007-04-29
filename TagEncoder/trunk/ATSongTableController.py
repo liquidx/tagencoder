@@ -227,7 +227,7 @@ class ATSongTableController(NibClassBuilder.AutoBaseClass):
                 os.close(tempfd)
                 ftag.commit_to_file(tempname)
                 self.tempfiles.append(tempname)
-                print f.encode('utf-8')
+                print f.encode('utf_8')
                 
             # if ok, force view to refresh
             self.tableView.reloadData()

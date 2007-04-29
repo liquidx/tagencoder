@@ -1,16 +1,11 @@
-from tagger import *
-import cjkcodecs.aliases
-from cjkcodecs import *
-from encodings import aliases
-
+import sys
 import os
+import encodings
+
+from tagger import *
 
 def strip_mod(list):
     return map(lambda x: x.split(".")[-1], list)
-
-DEBUG_ENC = ['gb2312', 'big5hkscs', 'utf8', 'iso8859-1']
-OLD_NEW_ENC_MAP = {'big5_hkscs2001':'big5hkscs'}
-FALLBACK_ENC = 'iso8859-1'
 
 # class to deal with MP3 files' tag encodings
 
@@ -26,7 +21,7 @@ class EncodedID3:
     id3v1 = None
     id3v2 = None
     
-    def __init__(self, filename, possibleEncodings = DEBUG_ENC):
+    def __init__(self, filename, possibleEncodings = []):
     
         self.filename = filename
     
@@ -170,7 +165,7 @@ class EncodedID3:
                 try:
                     result = value.decode(enc)
                 except AttributeError:
-                    result = value.encode('iso8859').decode(enc)
+                    result = value.encode('iso8859_1').decode(enc)
                 enc_used = enc
                 break
             except UnicodeDecodeError, e:

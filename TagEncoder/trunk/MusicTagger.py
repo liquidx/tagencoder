@@ -7,10 +7,16 @@ from tagger.constants import *
 from tagger.exceptions import *
 
 import os, glob, types
+import encodings
 
-import cjkcodecs.aliases
-from cjkcodecs import *
+try:
+    import cjkcodecs.aliases
+    from cjkcodecs import *
+except:
+    pass
+    
 from encodings import aliases
+
 
 NibClassBuilder.extractClasses("MusicTagger")
 
