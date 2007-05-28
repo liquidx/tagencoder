@@ -46,11 +46,13 @@ class ATEncodingPrefsController(NibClassBuilder.AutoBaseClass):
         all_aliases = ALL_ENC[:]
         all_aliases.sort()
 
+        """
         for enc in self.enabledEncodings:
             try:
                 all_aliases.remove(enc)
             except ValueError:
                 print "%s not in all_aliases" % enc
+        """
         
         self.availableEncodings = all_aliases
         

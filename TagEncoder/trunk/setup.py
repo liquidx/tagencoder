@@ -8,10 +8,10 @@ import py2app
 plist = dict(
     CFBundleName = 'TagEncoder',
     CFBundleIconFile = 'TagEncoder.icns',
-    CFBundleGetInfoString = '1.0 Copyright (c) 2005, Alastair Tse',
+    CFBundleGetInfoString = '1.1 Copyright (c) 2005-2007, Alastair Tse',
     CFBundleIdentifier = 'net.liquidx.tagencoder',
-    CFBundleShortVersionString = '1.0',
-    CFBundleVersion = '1.0',
+    CFBundleShortVersionString = '1.1',
+    CFBundleVersion = '1.1',
     LSMinimumSystemVersion = '10.3.0',
     NSAppleScriptEnabled = 'No',
     )
