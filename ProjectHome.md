@@ -1,0 +1,1 @@
+Converts MP3s ID3 tags from one character set to another.
